@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head onload="submitPayuForm()">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
+    <link rel="stylesheet" href="css/vendor.min.css">
+    <link rel="stylesheet" href="css/elephant.min.css">
+    <link rel="stylesheet" href="css/application.min.css">
+    <link rel="stylesheet" href="css/demo.min.css">
+    <title>{{ title }}</title>
+    <script type="text/javascript">
+        var hash = "{{ hashh }}";
+        function submitPayuForm() {
+            if (hash == '') {
+                return;
+            }
+            var payuForm = document.forms.payuForm;
+            payuForm.submit();
+        }
+    </script>
+</head>
+</head>
+
+<body class="layout layout-header-fixed">
+<!-- {{!--
+<h1>{{ title }}</h1> --}} {{!--
+<p>Welcome to {{ title }}</p> --}}-->
+<div class="main pull-center">
+    <h1>PayUBiz Payment Request Form </h1>
+    <h2>PayU Form</h2>
+    <br/> {{% if error %}}
+
+    <span style="color:red">Please fill all mandatory fields.</span>
+    <br/>
+    <br/> {{% endif %}}
+    <!--{{!-- here i have to add action as my serverlet which will handle this fomr --}} {{!--
+  <form action='/payments' method="post" name="payuForm" class="contact1-form validate-form">{{% csrf_token %}} --}}-->
+    <div class=" login-body">
+        <form action='/payUBiz' method="post" name="payuForm" class="form">
+            <table class="demo-form-wrapper form-group">
+                <tr>
+                    <td>
+                        <b>Mandatory Parameters</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Amount: </td>
+                    <td>
+                        <input name="amount" value="{{ posted.amount|default:'' }}" class="form-control" />
+                    </td>
+                    <td>First Name: </td>
+                    <td>
+                        <input name="firstname" id="firstname" value="{{ posted.firstname|default:'' }}" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td>
+                        <input name="email" id="email" value="{{ posted.email|default:'' }}" class="form-control" type="email" />
+                    </td>
+                    <td>Phone: </td>
+                    <td>
+                        <input name="phone" value="{{ posted.phone|default:'' }}" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Product Info: </td>
+                    <td colspan="3">
+                        <textarea name="productinfo" class="form-control">{{ posted.productinfo|default:'' }}</textarea>
+                    </td>
+                </tr>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Optional Parameters</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name: </td>
+                    <td>
+                        <input name="lastname" id="lastname" value="{{ posted.lastname }}" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Address1: </td>
+                    <td>
+                        <input name="address1" value="{{ posted.address1 }}" class="form-control" />
+                    </td>
+                    <td>Address2: </td>
+                    <td>
+                        <input name="address2" value="{{ posted.address2 }}" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>City: </td>
+                    <td>
+                        <input name="city" value="{{ posted.city }}" class="form-control" />
+                    </td>
+                    <td>State: </td>
+                    <td>
+                        <input name="state" value="{{ posted.state }}" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Country: </td>
+                    <td>
+                        <input name="country" value="{{ posted.country }}" class="form-control" />
+                    </td>
+                    <td>Zipcode: </td>
+                    <td>
+                        <input name="zipcode" value="{{ posted.zipcode }}" class="form-control" />
+                    </td>
+                </tr>
+                <!-- {{!-- <tr>
+                <td>UDF1: </td>
+                <td>
+                  <input name="udf1" value="{{ posted.udf1 }}" />
+                </td>
+                <td>UDF2: </td>
+                <td>
+                  <input name="udf2" value="{{ posted.udf2 }}" />
+                </td>
+              </tr>
+              <tr>
+                <td>UDF3: </td>
+                <td>
+                  <input name="udf3" value="{{ posted.udf3 }}" />
+                </td>
+                <td>UDF4: </td>
+                <td>
+                  <input name="udf4" value="{{ posted.udf4 }}" />
+                </td>
+              </tr>
+              <tr>
+                <td>UDF5: </td>
+                <td>
+                  <input name="udf5" value="{{ posted.udf5 }}" />
+                </td>
+                <td>PG: </td>
+                <td>
+                  <input name="pg" value="{{ posted.PG }}" />
+                </td>
+              </tr> --}}-->
+
+                <td colspan="4">
+                    <input type="submit" value="Submit" class="btn btn-primary pull-right" />
+                </td>
+
+
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+
+
+
+</html>
