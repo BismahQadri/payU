@@ -114,7 +114,7 @@ router.post('/failure', function (req, res) {
             '|' + checkNull(key)
     }
     let reverseHash =  generateHash(params)
-    if (reverseHash === hash) {
+    if (reverseHash !== hash) {
         res.json(req.body)
       /*  res.render('status', {
             heading: 'Error',
