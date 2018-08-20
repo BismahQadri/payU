@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<head onload="submitPayuForm()">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700">
-    <link rel="stylesheet" href="css/vendor.min.css">
-    <link rel="stylesheet" href="css/elephant.min.css">
-    <link rel="stylesheet" href="css/application.min.css">
-    <link rel="stylesheet" href="css/demo.min.css">
-    <title>{{ title }}</title>
-    <script type="text/javascript">
-        var hash = "{{ hashh }}";
-        function submitPayuForm() {
-            if (hash == '') {
-                return;
-            }
-            var payuForm = document.forms.payuForm;
-            payuForm.submit();
-        }
-    </script>
-</head>
-</head>
+<head></head>
 
 <body class="layout layout-header-fixed">
 <!-- {{!--
@@ -37,7 +17,7 @@
     <!--{{!-- here i have to add action as my serverlet which will handle this fomr --}} {{!--
   <form action='/payments' method="post" name="payuForm" class="contact1-form validate-form">{{% csrf_token %}} --}}-->
     <div class=" login-body">
-        <form action='/payUBiz' method="post" name="payuForm" class="form">
+        <form action='#' method="post" name="payuForm" class="form" id="submit_form">
             <table class="demo-form-wrapper form-group">
                 <tr>
                     <td>
@@ -47,27 +27,27 @@
                 <tr>
                     <td>Amount: </td>
                     <td>
-                        <input name="amount" value="{{ posted.amount|default:'' }}" class="form-control" />
+                        <input name="amount" value="600.000" class="form-control" />
                     </td>
                     <td>First Name: </td>
                     <td>
-                        <input name="firstname" id="firstname" value="{{ posted.firstname|default:'' }}" class="form-control" />
+                        <input name="firstname" id="firstname" value="Bismah Qadri" class="form-control" />
                     </td>
                 </tr>
                 <tr>
                     <td>Email: </td>
                     <td>
-                        <input name="email" id="email" value="{{ posted.email|default:'' }}" class="form-control" type="email" />
+                        <input name="email" id="email" value="bismahqadri@gmail.com" class="form-control" type="email" />
                     </td>
                     <td>Phone: </td>
                     <td>
-                        <input name="phone" value="{{ posted.phone|default:'' }}" class="form-control" />
+                        <input name="phone" value="9999999999" class="form-control" />
                     </td>
                 </tr>
                 <tr>
                     <td>Product Info: </td>
                     <td colspan="3">
-                        <textarea name="productinfo" class="form-control">{{ posted.productinfo|default:'' }}</textarea>
+                        <input name="productinfo" class="form-control" value="Testing pay u biz"/>
                     </td>
                 </tr>
                 </tr>
@@ -153,8 +133,35 @@
         </form>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#submit_form' ).submit( function( e ) {
+            let data = {
+                "firstname":"Bismah Qadri",
+                "lastname":"",
+                "phone":"9999999999",
+                "productinfo":"Testing pay u biz",
+                "amount":600.000,
+                "email":"bismahqadri@gmail.com"
+            }
+            e.preventDefault();
+            axios.post('/payUBiz',data).then(function (response) {
+               // console.log(response.data)
+              /*  axios.post(`https://test.payu.in/_payment`,response.data, {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response)=>{
+                    console.log(response.data)
+                }).catch(function (err) {
+                    console.log(err)
+                })*/
+            })
+        })
+    })
+</script>
 </body>
-
-
-
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
