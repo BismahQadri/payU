@@ -13,6 +13,7 @@ router.post('/', function(req, res, next) {
     let txnid = new Date() + randomInt(10000, 999999)
     let params = `${key}|${txnid}|${data.amount}|${data.productinfo}|${data.firstname}|${data.email}|||||||||||${salt}`
     data.hash = generateHash(params)
+    data.key = key
     data.txnid = txnid
     data.surl = "https://powerful-sands-92812.herokuapp.com/payUBiz/success"
     data.furl = "https://powerful-sands-92812.herokuapp.com/payUBiz/failure"
