@@ -19,8 +19,8 @@ router.post('/', function(req, res, next) {
     data.key = key
     data.hash = hashvalue
     data.txnid = txnid
-    data.surl = "http://www.google.com"
-    data.furl = "http://www.google.com"
+    data.surl = "https://dashboard.heroku.com/apps/powerful-sands-92812/success"
+    data.furl = "https://dashboard.heroku.com/apps/powerful-sands-92812/failure"
     data.curl = "http://www.google.com"
     res.send(data)
 
