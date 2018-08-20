@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/elephant.css">
+    <link href="css/application.css" type="stylesheet"/>
 </head>
 
 <body class="layout layout-header-fixed">
 <div class="main pull-center">
-    <h1>PayUBiz Payment Request Form </h1>
-    <h2>PayU Form</h2>
-    <br/> {{% if error %}}
+    <h2 style="margin-left: 420px">PayUBiz Payment Request Form </h2>
+    <br/><br/>
+    <!--<h2>PayU Form</h2>-->
+    <!--<br/> {{% if error %}}-->
 
-    <span style="color:red">Please fill all mandatory fields.</span>
+   <!-- <span style="color:red">Please fill all mandatory fields.</span>
     <br/>
-    <br/> {{% endif %}}
+    <br/> {{% endif %}}-->
+
     <div class=" login-body">
-        <form action='#' method="post" name="payuForm" class="form" id="submit_form">
-            <table class="demo-form-wrapper form-group">
+        <form action='#' method="post" name="payuForm" class="form" id="submit_form" data-toggle="validator">
+            <!--<table class="demo-form-wrapper form-group">
                 <tr>
                     <td>
                         <b>Mandatory Parameters</b>
@@ -23,27 +28,27 @@
                 <tr>
                     <td>Amount: </td>
                     <td>
-                        <input name="amount" value="600.000" class="form-control" />
+                        <input name="amount" id="amount" value="" class="form-control" />
                     </td>
                     <td>First Name: </td>
                     <td>
-                        <input name="firstname" id="firstname" value="Bismah Qadri" class="form-control" />
+                        <input name="firstname" id="firstname" value="" class="form-control" />
                     </td>
                 </tr>
                 <tr>
                     <td>Email: </td>
                     <td>
-                        <input name="email" id="email" value="bismahqadri@gmail.com" class="form-control" type="email" />
+                        <input name="email" id="email" value="" class="form-control" type="email" />
                     </td>
                     <td>Phone: </td>
                     <td>
-                        <input name="phone" value="9999999999" class="form-control" />
+                        <input name="phone" id="phone" value='' class="form-control" />
                     </td>
                 </tr>
                 <tr>
                     <td>Product Info: </td>
                     <td colspan="3">
-                        <input name="productinfo" class="form-control" value="Testing pay u biz"/>
+                        <input name="productinfo" id="productinfo" class="form-control" value=""/>
                     </td>
                 </tr>
                 </tr>
@@ -55,113 +60,289 @@
                 <tr>
                     <td>Last Name: </td>
                     <td>
-                        <input name="lastname" id="lastname" value="{{ posted.lastname }}" class="form-control" />
+                        <input name="lastname" id="lastname" value="" class="form-control" />
                     </td>
                 </tr>
                 <tr>
                     <td>Address1: </td>
                     <td>
-                        <input name="address1" value="{{ posted.address1 }}" class="form-control" />
+                        <input name="address1" value="" class="form-control" />
                     </td>
                     <td>Address2: </td>
                     <td>
-                        <input name="address2" value="{{ posted.address2 }}" class="form-control" />
+                        <input name="address2" value="" class="form-control" />
                     </td>
                 </tr>
                 <tr>
                     <td>City: </td>
                     <td>
-                        <input name="city" value="{{ posted.city }}" class="form-control" />
+                        <input name="city" value="" class="form-control" />
                     </td>
                     <td>State: </td>
                     <td>
-                        <input name="state" value="{{ posted.state }}" class="form-control" />
+                        <input name="state" value="" class="form-control" />
                     </td>
                 </tr>
                 <tr>
                     <td>Country: </td>
                     <td>
-                        <input name="country" value="{{ posted.country }}" class="form-control" />
+                        <input name="country" value="" class="form-control" />
                     </td>
                     <td>Zipcode: </td>
                     <td>
-                        <input name="zipcode" value="{{ posted.zipcode }}" class="form-control" />
+                        <input name="zipcode" value="" class="form-control" />
                     </td>
                 </tr>
 
                 <td colspan="4">
-                    <input type="submit" value="Submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#paymentModal" />
+                    <input id="submitButton" type="submit" value="Submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#paymentModal" />
                 </td>
 
 
                 </tr>
-            </table>
+            </table>-->
+            <div class="form-body" style="width: 800px;margin-left: 280px">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">First Name</label><span style="color:red;">*</span>
+                            <input id="firstname" name="firstname" type="text" class="form-control input-sm">
+                            <!--<span id="labelUname" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Email</label><span style="color:red;">*</span>
+                            <input id="email" name="email" class="form-control input-sm" type="email">
+                            <!--<span id="labelName" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Amount</label><span style="color:red;">*</span>
+                            <input id="amount" name="amount" type="text" class="form-control input-sm">
+                            <!--<span id="labelUname" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Phone</label><span style="color:red;">*</span>
+                            <input id="phone" name="phone" class="form-control input-sm" type="text">
+                            <!--<span id="labelName" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Product Information</label><span style="color:red;">*</span>
+                            <input id="productinfo" name="productinfo" type="text" class="form-control input-sm">
+                            <!--<span id="labelUname" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Last Name</label>
+                            <input id="lastname" name="lastname" type="text" class="form-control input-sm">
+                            <!--<span id="labelUname" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Address</label>
+                            <input id="address" name="address" class="form-control input-sm" type="text">
+                            <!--<span id="labelName" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">City</label>
+                            <input id="city" name="city" type="text" class="form-control input-sm">
+                            <!--<span id="labelUname" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">State</label>
+                            <input id="state" name="state" class="form-control input-sm" type="text">
+                            <!--<span id="labelName" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Country</label>
+                            <input id="country" name="country" type="text" class="form-control input-sm">
+                            <!--<span id="labelUname" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">ZipCode</label>
+                            <input id="zipcode" name="zipcode" class="form-control input-sm" type="text">
+                            <!--<span id="labelName" style="color:red; display:none">Minimum Length should be 2</span>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-md-12">
+                        <input id="submitButton" type="submit" value="Submit" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal" style="margin-left: 280px;width: 250px;" />
+                    </div>
+                </div>
+                <div class="row">
+                    <span style="color:red;">* - Mandatory Fields</span>
+                </div>
+            </div>
         </form>
     </div>
 </div>
 <div id="paymentModal" class="modal in" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <div class="modal-content animated bounceIn">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                <h4 class="modal-title">Payment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title" >Payment</h4>
             </div>
             <div class="modal-body form " style="margin-top: 40px">
                 <form id="submitForm" action="https://test.payu.in/_payment" method="POST">
                     <input type="hidden" name="firstname" id="first" />
-                    <input type="hidden" name="lastname" id="last" />
+                    <!--<input type="hidden" name="lastname" id="last" />-->
                     <input type="hidden" name="surl" id="surl" />
-                    <input type="hidden" name="phone" id="phone" />
+                    <input type="hidden" name="phone" id="phoneNo" />
                     <input type="hidden" name="key" id="key" />
                     <input type="hidden" name="hash" id = "hash" />
                     <input type="hidden" name="curl" id="curl" />
                     <input type="hidden" name="furl" id="furl" />
                     <input type="hidden" name="txnid" id="txnid" />
-                    <input type="hidden" name="productinfo" id="productinfo" />
-                    <input type="hidden" name="amount" id="amount" />
+                    <input type="hidden" name="productinfo" id="productinfo1" />
+                    <input type="hidden" name="amount" id="amount1" />
                     <input type="hidden" name="email" id="emaill" />
+                    <input type="hidden" name="lastname" id="last" />
+                    <input type="hidden" name="address1" id="address1" />
+                    <input type="hidden" name="city" id="cityl" />
+                    <input type="hidden" name="state" id="statel" />
+                    <input type="hidden" name="country" id="country1" />
+                    <input type="hidden" name="zipcode" id="zipcode1" />
                     <br/>
-                    <label>Are You Sure You Want To Continue?</label>
-                    <input type= "submit" value="submit">
+                    <label style="text-align: center;margin-left: 150px;margin-top: -20px">Are You Sure You Want To Continue?</label><br/>
+                    <input type= "submit" value="OK" class="btn btn-primary"style="margin-left: 250px">
 
                 </form>
+            </div>
         </div>
     </div>
 </div>
-</div>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="js/vendor.min.js"></script>
+<script src="js/elephant.js"></script>
+<script src="js/application.js"></script>
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>-->
+<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+
 <script>
     $(document).ready(function () {
-        $('#submit_form' ).submit( function( e ) {
-            let data = {
-                "firstname":"Bismah Qadri",
-                "lastname":"",
-                "phone":"9999999999",
-                "productinfo":"Testing pay u biz",
-                "amount":600,
-                "email":"bismahqadri@gmail.com"
+
+        /*function Validation(){}
+        Validation.prototype.validate = function(){
+            let amount = $('#amount').val(),
+                firstname = $('#firstname').val(),
+                email = $('#email').val(),
+                phone = $('#phone').val(),
+                productinfo = $('#productinfo').val(),
+                valid = true
+
+            if(!amount){
+                $('#amount').parent().addClass('has-error')
+                valid = false
             }
-            e.preventDefault();
-            axios.post('/payUBiz',data).then(function (response) {
-                $('#paymentModal').show()
-                let data = response.data
-                $('#first').val(data.firstname)
-                $('#last').val(data.lastname)
-                $('#surl').val(data.surl)
-                $('#phone').val(data.phone)
-                $('#key').val(data.key)
-                $('#hash').val(data.hash)
-                $('#curl').val(data.curl)
-                $('#furl').val(data.furl)
-                $('#txnid').val(data.txnid)
-                $('#productinfo').val(data.productinfo)
-                $('#amount').val(data.amount)
-                $('#emaill').val(data.email)
-            })
+            if(!firstname){
+                $('#firstname').parent().addClass('has-error')
+                valid = false
+            }
+            if(!email){
+                $('#email').parent().addClass('has-error')
+                valid = false
+            }
+            if(!phone){
+                $('#phone').parent().addClass('has-error')
+                valid = false
+            }
+            if(!productinfo){
+                $('#productinfo').parent().addClass('has-error')
+                valid = false
+            }
+            if(valid){
+                $('#amount').parent().removeClass('has-error')
+                $('#firstname').parent().removeClass('has-error')
+                $('#email').parent().removeClass('has-error')
+                $('#phone').parent().removeClass('has-error')
+                $('#productinfo').parent().removeClass('has-error')
+            }
+            return valid
+        }
+        let validation = new Validation()
+
+        $('#submitButton').on('click',function () {
+            if(!validation.validate()) {
+                console.log('in')
+                return
+            }
+        })*/
+        $('#submit_form' ).submit( function( e ) {
+           // if(validation.validate()) {
+                let data = {
+                    "firstname": $('#firstname').val(),
+                    "phone": $('#phone').val(),
+                    "productinfo": $('#productinfo').val(),
+                    "amount": parseFloat($('#amount').val()),
+                    "email": $('#email').val(),
+                    "lastname": $('#lastname').val(),
+                    "address": $('#address').val(),
+                    "city": $('#city').val(),
+                    "state": $('#state').val(),
+                    "country": $('#country').val(),
+                    "zipcode": $('#zipcode').val()
+                }
+                e.preventDefault();
+                axios.post('/payUBiz', data).then(function (response) {
+                    if (response.data) {
+                        $('#paymentModal').show()
+                        let data = response.data
+                        $('#first').val(data.firstname)
+                        $('#last').val(data.lastname)
+                        $('#surl').val(data.surl)
+                        $('#phoneNo').val(data.phone)
+                        $('#key').val(data.key)
+                        $('#hash').val(data.hash)
+                        $('#curl').val(data.curl)
+                        $('#furl').val(data.furl)
+                        $('#txnid').val(data.txnid)
+                        $('#productinfo1').val(data.productinfo)
+                        $('#amount1').val(data.amount)
+                        $('#emaill').val(data.email)
+                        $('#address1').val(data.address)
+                        $('#cityl').val(data.city)
+                        $('#statel').val(data.state)
+                        $('#country1').val(data.country)
+                        $('#zipcode1').val(data.zipcode)
+                    }
+                    else{
+                        $('#paymentModal').hide()
+                        console.log('no')
+                    }
+                })
+            //}
         })
     })
 </script>
