@@ -28,10 +28,7 @@ router.post('/', function(req, res, next) {
 router.post('/success', function (req, res) {
     const body = req.body
     console.log('======================success',req)
-    res.render('status', {
-        heading: 'Success',
-        message: 'Successfully Done'
-    })
+    res.json(req.body)
 })
 
 router.post('/failure', function (req, res) {
