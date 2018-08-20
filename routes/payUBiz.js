@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
     let data = req.body
     let key = "J0rC5a"
     let salt = 'J5OrgpgB'
-    let txnid = '454131146234'
+    let txnid = new Date() + randomInt(10000, 999999)
     let params = `${key}|${txnid}|${data.amount}|${data.productinfo}|${data.firstname}|${data.email}|||||||||||${salt}`
     const hash512 = crypto.createHash('sha512')
     hash512.update(params)
@@ -22,12 +22,7 @@ router.post('/', function(req, res, next) {
     data.surl = "http://www.google.com"
     data.furl = "http://www.google.com"
     data.curl = "http://www.google.com"
-   // console.log(data)
-   /* return res.redirect(url.format({
-        pathname:"https://test.payu.in/_payment",
-        query:data
-    }));*/
-   // res.send(data)
+    res.send(data)
 
 });
 

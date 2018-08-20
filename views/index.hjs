@@ -4,9 +4,6 @@
 </head>
 
 <body class="layout layout-header-fixed">
-<!-- {{!--
-<h1>{{ title }}</h1> --}} {{!--
-<p>Welcome to {{ title }}</p> --}}-->
 <div class="main pull-center">
     <h1>PayUBiz Payment Request Form </h1>
     <h2>PayU Form</h2>
@@ -15,8 +12,6 @@
     <span style="color:red">Please fill all mandatory fields.</span>
     <br/>
     <br/> {{% endif %}}
-    <!--{{!-- here i have to add action as my serverlet which will handle this fomr --}} {{!--
-  <form action='/payments' method="post" name="payuForm" class="contact1-form validate-form">{{% csrf_token %}} --}}-->
     <div class=" login-body">
         <form action='#' method="post" name="payuForm" class="form" id="submit_form">
             <table class="demo-form-wrapper form-group">
@@ -93,36 +88,6 @@
                         <input name="zipcode" value="{{ posted.zipcode }}" class="form-control" />
                     </td>
                 </tr>
-                <!-- {{!-- <tr>
-                <td>UDF1: </td>
-                <td>
-                  <input name="udf1" value="{{ posted.udf1 }}" />
-                </td>
-                <td>UDF2: </td>
-                <td>
-                  <input name="udf2" value="{{ posted.udf2 }}" />
-                </td>
-              </tr>
-              <tr>
-                <td>UDF3: </td>
-                <td>
-                  <input name="udf3" value="{{ posted.udf3 }}" />
-                </td>
-                <td>UDF4: </td>
-                <td>
-                  <input name="udf4" value="{{ posted.udf4 }}" />
-                </td>
-              </tr>
-              <tr>
-                <td>UDF5: </td>
-                <td>
-                  <input name="udf5" value="{{ posted.udf5 }}" />
-                </td>
-                <td>PG: </td>
-                <td>
-                  <input name="pg" value="{{ posted.PG }}" />
-                </td>
-              </tr> --}}-->
 
                 <td colspan="4">
                     <input type="submit" value="Submit" class="btn btn-primary pull-right" data-toggle="modal" data-target="#paymentModal" />
@@ -142,20 +107,19 @@
                 <h4 class="modal-title">Payment</h4>
             </div>
             <div class="modal-body form " style="margin-top: 40px">
-                <form id="submitForm" action="" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="firstname" value="" />
-                    <input type="hidden" name="lastname" value="" />
-                    <input type="hidden" name="surl" value="" />
-                    <input type="hidden" name="phone" value="" />
-                    <input type="hidden" name="key" value="J0rC5a" />
-                    <input type="hidden" name="hash" value = "" />
-                    <input type="hidden" name="curl" value="" />
-                    <input type="hidden" name="furl" value="" />
-                    <input type="hidden" name="txnid" value="" />
-                    <input type="hidden" name="productinfo" value="" />
-                    <input type="hidden" name="amount" value="" />
-                    <input type="hidden" name="email" value="" />
-
+                <form id="submitForm" action="https://test.payu.in/_payment" method="POST">
+                    <input type="hidden" name="firstname" id="first" />
+                    <input type="hidden" name="lastname" id="last" />
+                    <input type="hidden" name="surl" id="surl" />
+                    <input type="hidden" name="phone" id="phone" />
+                    <input type="hidden" name="key" id="key" />
+                    <input type="hidden" name="hash" id = "hash" />
+                    <input type="hidden" name="curl" id="curl" />
+                    <input type="hidden" name="furl" id="furl" />
+                    <input type="hidden" name="txnid" id="txnid" />
+                    <input type="hidden" name="productinfo" id="productinfo" />
+                    <input type="hidden" name="amount" id="amount" />
+                    <input type="hidden" name="email" id="emaill" />
                     <br/>
                     <label>Are You Sure You Want To Continue?</label>
                     <input type= "submit" value="submit">
@@ -178,23 +142,25 @@
                 "lastname":"",
                 "phone":"9999999999",
                 "productinfo":"Testing pay u biz",
-                "amount":600.000,
+                "amount":600,
                 "email":"bismahqadri@gmail.com"
             }
             e.preventDefault();
             axios.post('/payUBiz',data).then(function (response) {
                 $('#paymentModal').show()
-               // console.log(response.data)
-              /*  axios.post(`https://test.payu.in/_payment`,response.data, {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    }
-                }).then((response)=>{
-                    console.log(response.data)
-                }).catch(function (err) {
-                    console.log(err)
-                })*/
+                let data = response.data
+                $('#first').val(data.firstname)
+                $('#last').val(data.lastname)
+                $('#surl').val(data.surl)
+                $('#phone').val(data.phone)
+                $('#key').val(data.key)
+                $('#hash').val(data.hash)
+                $('#curl').val(data.curl)
+                $('#furl').val(data.furl)
+                $('#txnid').val(data.txnid)
+                $('#productinfo').val(data.productinfo)
+                $('#amount').val(data.amount)
+                $('#emaill').val(data.email)
             })
         })
     })
