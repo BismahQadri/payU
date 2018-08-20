@@ -63,7 +63,7 @@ router.post('/success', function (req, res) {
     const hash512 = crypto.createHash('sha512')
     hash512.update(params)
     let reverseHash =  hash512.digest('hex')
-    if (reverseHash === hash) {
+    if (reverseHash !== hash) {
         // save payment transactions in DB
         res.json(req.body)
       /*  res.render('status', {
